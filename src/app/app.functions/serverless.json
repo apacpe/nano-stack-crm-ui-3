@@ -3,6 +3,11 @@
     "myFunc": {
       "file": "example-function.js",
       "secrets": []
+    },
+    "tableFunc": {
+      "file": "custom-function.js",
+      "secrets": []
     }
+
   }
 }

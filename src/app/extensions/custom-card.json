@@ -1,0 +1,16 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Qualifying Call Card",
+    "uid": "qualifying_call_card",
+    "location": "crm.record.tab",
+    "module": {
+      "file": "Custom.jsx"
+    },
+    "objectTypes": [
+      {
+        "name": "contacts"
+      }
+    ]
+  }
+}

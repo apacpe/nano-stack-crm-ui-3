@@ -7,5 +7,9 @@
     "build": "npm run build --prefix ./src/app/extensions/"
   },
   "author": "HubSpot",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@hubspot/api-client": "^11.1.0",
+    "@hubspot/ui-extensions": "^0.8.24"
+  }
 }
