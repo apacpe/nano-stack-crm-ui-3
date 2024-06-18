@@ -29,7 +29,7 @@ const PropList = ({ context, runServerless, actions }) => {
 
   const handleClick = async () => {
     const { response, status, message, workflowId } = await runServerless({
-      name: "tableFunc", propertiesToSend: ['email'], parameters: {workflowId}
+      name: "customFunc", propertiesToSend: ['email'], parameters: {workflowId}
     });
     if (status == 'SUCCESS') {
       addAlert({ message: response, type: "success" });
