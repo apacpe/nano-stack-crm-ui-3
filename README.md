@@ -102,7 +102,7 @@ const PropList = ({ context, runServerless, actions }) => {
 
 4. Navigate to a contact record and check that you're able to see the "Qualifying Call card". You should be able to edit the selected contact properties in your new CRM card. 
 
-### Add a calculation using the values of two properties
+### Calculate "Expected revenue" using the values of two properties
 1. In the Custom.jsx file, have your UI extension return a Statistics component to contain your calculated value
 ```
 <Statistics>
@@ -112,7 +112,7 @@ const PropList = ({ context, runServerless, actions }) => {
       </Statistics>
 ```
 
-2. Add a state variable for revenueCount and register the _onCrmPropertiesUpdate_ and _fetchCrmObjectProperties_ methods in the PropList component 
+2. Add a state variable for _revenueCount_ and register the _onCrmPropertiesUpdate_ and _fetchCrmObjectProperties_ methods in the PropList component 
 
 ```
 const [revenueCount, setRevenueCount] = useState(0);
@@ -122,13 +122,24 @@ const [revenueCount, setRevenueCount] = useState(0);
   } = actions;
 
 ```
-3. 
+3. Write 2 functions that take in contact properties as the input and return an update to the _revenueCount_ state variable 
 
+```
+  onCrmPropertiesUpdate(['no_of_users', 'price_per_user'], (properties) => {
+    console.log('prop-update', properties);
+    setRevenueCount(parseFloat(properties.no_of_users) * parseFloat(properties.price_per_user));
+  });
+
+  fetchCrmObjectProperties(['no_of_users', 'price_per_user']).then(properties => {
+    console.log('prop-fetch', properties);
+    setRevenueCount(parseFloat(properties.no_of_users) * parseFloat(properties.price_per_user));
+  });
+```
+    
 ### Deploy changes to HubSpot
 
-1. Open the Example.jsx file in a code editor program and edit the HTML
-2. Upload your updated files with `hs project upload --account=[your account id]`
-3. Review the changes on your CRM
+1. Upload your updated files to your HubSpot project with `hs project upload --account=[your account id]`
 
+2. Navigate to a contact record and update the value of both properties. You should see the "Expected revenue" value update instantly.
 ---
 Refer to [this resource](https://docs.google.com/document/d/158lC7iaTETgKKQVDs4rdOBRZ_9vSUIBIlpByFh0b_4o/edit#heading=h.gzn6elt46xf7) to troubleshoot common errors encountered during this session. 
