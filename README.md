@@ -1,52 +1,30 @@
-# nano-stack-crm-ui-2
+# nano-stack-crm-ui-3
 # Nano Stack Developer Training - CRM UI Extensions
 The following are instructions to create a custom CRM UI card and deploy it to HubSpot. The CRM UI card will be built with React and Node.js. 
 
-## Create a new CRM UI extension
-### Set up files for your new extension 
-1. Open app.json in your code editor and make the following edits 
+## Serverless functions for your extension
+### Setting up the API client 
+1. Open serverless.json in your code editor and define the API client
 
 ```
-"scopes": [
-    "crm.objects.contacts.read",
-    "crm.objects.contacts.write",
-    "automation"
-  ],
-  "public": false,
-  "extensions": {
-    "crm": {
-      "cards": [
-        {
-          "file": "extensions/example-card.json"
-        },
-        {
-          "file": "extensions/custom-card.json"
-        }
-      ]
+const hubspot = require('@hubspot/api-client');
 ```
 
-2. Create a new file called custom-card.json in the extensions folder and set up your new card configuration
+2. Create a serverless function and define the variables needed to run the endpoint
 
 ```
-{
-  "type": "crm-card",
-  "data": {
-    "title": "Qualifying Call Card",
-    "uid": "qualifying_call_card",
-    "location": "crm.record.tab",
-    "module": {
-      "file": "Custom.jsx"
-    },
-    "objectTypes": [
-      {
-        "name": "contacts"
-      }
-    ]
-  }
-}
+exports.main = async (context = {}) => {
+
+  const { email } = context.propertiesToSend;
+  const { workflowId } = context.parameters;
+ 
+  const token = process.env['PRIVATE_APP_ACCESS_TOKEN'];
+  const hsClient = new hubspot.Client({ accessToken: token });
+
+};
 ```
 
-3. Open serverless.json and configure a function for your new CRM extension
+3. Using your terminal, save your access token 
 
 ```
 "customFunc": {
