@@ -28,7 +28,7 @@ exports.main = async (context = {}) => {
 
 4. Using your terminal, save your access token using `hs secrets add PRIVATE_APP_ACCESS_TOKEN`. When prompted, paste the access token that you've copied into the terminal. 
 
-5. On the serverless.json file, instantiate the client that calls the endpoint 
+5. On the custom-function.js file, instantiate the client that calls the endpoint 
 ```
 try {
     hsClient.apiRequest({
@@ -65,7 +65,8 @@ const {
 3. As well as an event handler that triggers the serverless function
 ```
   const handleClick = async () => {
-    const { response, status, message, workflowId } = await runServerless({
+    const workflowId = [your workflow id];
+    const { response, status, message } = await runServerless({
       name: "customFunc", propertiesToSend: ['email'], parameters: {workflowId}
     });
     if (status == 'SUCCESS') {
