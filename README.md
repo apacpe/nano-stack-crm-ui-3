@@ -4,7 +4,7 @@ The following are instructions to create a custom CRM UI card and deploy it to H
 
 ## Add a serverless function to your extension
 ### Setting up the API client 
-1. Open serverless.json in your code editor and define the API client
+1. Open custom-function.js in your code editor and define the API client
 
 ```
 const hubspot = require('@hubspot/api-client');
