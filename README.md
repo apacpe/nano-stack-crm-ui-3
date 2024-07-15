@@ -86,7 +86,7 @@ const {
 Refer to [this resource](https://docs.google.com/document/d/158lC7iaTETgKKQVDs4rdOBRZ_9vSUIBIlpByFh0b_4o/edit#heading=h.gzn6elt46xf7) to troubleshoot common errors encountered during this session. 
 
 ---
-## BONUS expansion pack (credits to @antomanto)
+## BONUS expansion pack (credits to @anto)
 ### Call an additional endpoint in your extension that converts flowId to workflowId  
 1. In the Custom.jsx file, rename the _workflowId_ variable to `flowId` and store the **flowId** of your chosen workflow in this variable.
 ```
